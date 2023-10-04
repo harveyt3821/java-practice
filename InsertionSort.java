@@ -12,23 +12,22 @@ package com.bootcamp.java.sorting;
 public class InsertionSort {
 
     public static int[] insertionSort(int[] array) {
-        if (array.length < 3) {
-            if (array[1] < array[0]){
-                var temp = array[0];
-                array[0] = array[1];
-                array[1] = temp;
+        return insertionSortByLoop(array);
+    }
+
+    private static int[] insertionSortByLoop(int[] array) {
+        int size = array.length;
+
+        for (int step = 1; step < size; step++) {
+            int key = array[step];
+            int left = step - 1;
+
+            while (left >= 0 && key < array[left]) {
+                array[left + 1] = array[left];
+                --left;
             }
-            return array;
-        }
 
-
-        for (int i = 2; i < array.length; i++) {
-            var key = array[i];
-            for (int j = i - 1; j >= 0; j--) {
-                if ( array[j] < key ) continue;
-
-                
-            }
+            array[left + 1] = key;
         }
 
         return array;
