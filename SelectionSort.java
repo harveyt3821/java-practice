@@ -12,18 +12,20 @@ package com.bootcamp.java.sorting;
 public class SelectionSort {
 
     public static int[] selectionSort(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            int min = array[i];
-            int swappingIndex = i;
-            for (int j = i + 1; j < array.length; j++) {
-                if ( min > array[j] ){
-                    swappingIndex = j;
-                    min = array[j];
+        int size = array.length;
+
+        for (int step = 0; step < size - 1; step++) {
+            int min_idx = step;
+            // Select the minimum element in each loop.
+            for (int i = step + 1; i < size; i++) {
+                if (array[i] < array[min_idx]) {
+                    min_idx = i;
                 }
             }
-            int temp = array[i];
-            array[i] = min;
-            array[swappingIndex] = temp;
+
+            int temp = array[step];
+            array[step] = array[min_idx];
+            array[min_idx] = temp;
         }
 
         return array;
